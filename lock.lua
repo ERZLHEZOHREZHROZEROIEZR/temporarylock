@@ -1,45 +1,35 @@
-local capiKey = "x" 
+local P1000ToggleKey = "x" -- Change that to whatever keybind: "t"
 
 
 --[[
-print 
+
 --]]
 
---// Misc //--
 wait(1) 
 print("SystemX on top")
 setclipboard("SystemX on top")
 
-local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/shlexware/Orion/main/source")))()
-
-OrionLib:MakeNotification({
-	Name = "SystemX loaded!",
-	Content = "enjoy!",
-	Image = "rbxassetid://6521437982",
-	Time = 8
-})
-
---// Services //--
+--// Services
 checkcaller = checkcaller
 newcclosure = newcclosure
 hookmetamethod = hookmetamethod
 
 local PastedSources = false
-local capiService = game:GetService("RunService")
+local BruhXD = game:GetService("RunService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local Bullshit = LocalPlayer:GetMouse()
 
 
---// Toggles //--
+--// Toggles
 Bullshit.KeyDown:Connect(function(SayNoToOblivity)
-	if SayNoToOblivity == string.lower(capiKey) then
+	if SayNoToOblivity == string.lower(P1000ToggleKey) then
 		pcall(function()
 			if PastedSources == false then
 				PastedSources = true
-				print("Enabled SystemX Desync")
+				print("Enabled SystemX AntiLock")
 			elseif PastedSources == true then
 				PastedSources = false
-				print("Disabled SystemX Desync")
+				print("SystemX AntiLock")
 			end
 		end)
 	end
@@ -52,7 +42,7 @@ Bullshit.KeyDown:Connect(function(SayNoToOblivity)
 end)
 
 
---// Desync_Source //--
+--// Desync_Source
 function RandomNumberRange(a)
 	return math.random(-a * 100, a * 100) / 100
 end
@@ -63,7 +53,7 @@ end
 
 
 local DesyncTypes = {}
-capiService.Heartbeat:Connect(function()
+BruhXD.Heartbeat:Connect(function()
 	if PastedSources == true then
 		DesyncTypes[1] = LocalPlayer.Character.HumanoidRootPart.CFrame
 		DesyncTypes[2] = LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity
@@ -77,7 +67,7 @@ capiService.Heartbeat:Connect(function()
 
 		LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(1, 1, 1) * 16384
 
-		capiService.RenderStepped:Wait()
+		BruhXD.RenderStepped:Wait()
 
 		LocalPlayer.Character.HumanoidRootPart.CFrame = DesyncTypes[1]
 		LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = DesyncTypes[2]
@@ -85,16 +75,16 @@ capiService.Heartbeat:Connect(function()
 end)
 
 
---// Hook_CFrame //--
+--// Hook_CFrame
 local XDDDDDD = nil
 XDDDDDD = hookmetamethod(game, "__index", newcclosure(function(self, key)
 	if PastedSources == true then
 		if not checkcaller() then
 			if key == "CFrame" and PastedSources == true and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character:FindFirstChild("Humanoid") and LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0 then
 				if self == LocalPlayer.Character.HumanoidRootPart then
-					return DesyncTypes[2] or CFrame.new()
+					return DesyncTypes[1] or CFrame.new()
 				elseif self == LocalPlayer.Character.Head then
-					return DesyncTypes[2] and DesyncTypes[2] + Vector3.new(0, LocalPlayer.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
+					return DesyncTypes[1] and DesyncTypes[1] + Vector3.new(0, LocalPlayer.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
 				end
 			end
 		end
