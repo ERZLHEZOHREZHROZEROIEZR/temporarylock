@@ -1,4 +1,4 @@
-local P1000ToggleKey = "x" -- Change that to whatever keybind: "t"
+local capiKey = "x" -- Change that to whatever keybind: "t"
 
 
 --[[
@@ -22,14 +22,14 @@ local Bullshit = LocalPlayer:GetMouse()
 
 --// Toggles
 Bullshit.KeyDown:Connect(function(SayNoToOblivity)
-	if SayNoToOblivity == string.lower(P1000ToggleKey) then
+	if SayNoToOblivity == string.lower(capiKey) then
 		pcall(function()
 			if PastedSources == false then
 				PastedSources = true
 				print("Enabled SystemX AntiLock")
 			elseif PastedSources == true then
 				PastedSources = false
-				print("SystemX AntiLock")
+				print("Disabled SystemX AntiLock")
 			end
 		end)
 	end
