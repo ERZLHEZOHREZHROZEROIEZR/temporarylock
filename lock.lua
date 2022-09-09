@@ -6,8 +6,8 @@ local capiKey = "x" -- Change that to whatever keybind: "t"
 --]]
 
 wait(1) 
-print("SystemX on top")
-setclipboard("SystemX on top")
+print("Thriller.lua on top")
+setclipboard("Thriller.lua on top")
 
 --// Services
 checkcaller = checkcaller
